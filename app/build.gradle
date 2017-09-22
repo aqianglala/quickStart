@@ -1,0 +1,122 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao' // apply plugin
+
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
+    defaultConfig {
+        applicationId "com.example.mynewbaseapp"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        // 腾讯bugly
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+        // 腾讯统计
+        manifestPlaceholders = [
+                MTA_APPKEY:"A47L8ZYUI5YB",
+                MTA_CHANNEL:"测试2"
+        ]
+    }
+
+    signingConfigs {
+        config {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false // 去除无用资源
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            minifyEnabled true
+            shrinkResources false // 去除无用资源
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    // 多渠道打包
+    productFlavors {
+        doov {}
+    }
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    // 第三方lib
+    // "单Activity ＋ 多Fragment","多模块Activity + 多Fragment"架构
+    compile 'me.yokeyword:fragmentation:1.1.6'
+    // butterknife
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    // logger
+    compile 'com.orhanobut:logger:2.1.1'
+    // leakcanary
+    //    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.2'
+    //    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.2'
+    // imageView
+    compile 'com.makeramen:roundedimageview:2.3.0'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    // glide
+    compile 'com.github.bumptech.glide:glide:4.1.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.1.1'
+    // greendao
+    compile 'org.greenrobot:greendao:3.2.2'
+    // BaseRecyclerViewAdapterHelper
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.28'
+    // statusbarutil
+    compile 'com.jaeger.statusbarutil:library:1.4.0'
+    // flexibledivider
+    compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'
+    // retrofit2
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'com.squareup.retrofit2:retrofit-converters:2.1.0'
+    // logging-interceptor
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    // rxjava
+    compile 'io.reactivex:rxjava:1.1.9'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    // dagger2
+    compile 'com.google.dagger:dagger:2.6'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.6'
+    // 腾讯bugly
+    compile 'com.tencent.bugly:crashreport:latest.release'
+    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    // 腾讯统计
+    compile 'com.qq.mta:mta:3.1.4-alpha'
+    compile 'com.tencent.mid:mid:3.73-alpha'
+    // 百度地图、数据统计、bug统计、分享、第三方登录、推送
+    compile files('libs/BaiduLBS_Android.jar')
+}
