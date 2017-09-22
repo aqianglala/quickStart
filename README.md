@@ -8,21 +8,21 @@ mvp模板：[MVPTemplate](https://github.com/aqianglala/MVPTemplate)
 
 ### 第三方库
 
-[fragmentation](https://github.com/YoKeyword/Fragmentation)
-[retrofit2](https://github.com/square/retrofit)
-[rxjava](https://github.com/ReactiveX/RxJava)
-[dagger2](https://github.com/google/dagger)
-[logging-interceptor](https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor)
-[butterknife](https://github.com/JakeWharton/butterknife)
-[logger](https://github.com/orhanobut/logger)
-[leakcanary](https://github.com/square/leakcanary)
-[glide](https://github.com/bumptech/glide)
-[greendao](https://github.com/greenrobot/greenDAO)
-[BaseRecyclerViewAdapterHelper](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
-[statusbarutil](https://github.com/laobie/StatusBarUtil)
-[flexibledivider](https://github.com/yqritc/RecyclerView-FlexibleDivider)
-[roundedimageview](https://github.com/vinc3m1/RoundedImageView)
-[circleimageview](https://github.com/hdodenhof/CircleImageView)
-腾讯bugly
-腾讯统计
-百度地图
+ - [fragmentation](https://github.com/YoKeyword/Fragmentation)
+ - [retrofit2](https://github.com/square/retrofit)
+ - [rxjava](https://github.com/ReactiveX/RxJava)
+ - [dagger2](https://github.com/google/dagger)
+ - [logging-interceptor](https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor)
+ - [butterknife](https://github.com/JakeWharton/butterknife)
+ - [logger](https://github.com/orhanobut/logger)
+ - [leakcanary](https://github.com/square/leakcanary)
+ - [glide](https://github.com/bumptech/glide)
+ - [greendao](https://github.com/greenrobot/greenDAO)
+ - [BaseRecyclerViewAdapterHelper](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
+ - [statusbarutil](https://github.com/laobie/StatusBarUtil)
+ - [flexibledivider](https://github.com/yqritc/RecyclerView-FlexibleDivider)
+ - [roundedimageview](https://github.com/vinc3m1/RoundedImageView)
+ - [circleimageview](https://github.com/hdodenhof/CircleImageView)
+ - 腾讯bugly
+ - 腾讯统计
+ - 百度地图
